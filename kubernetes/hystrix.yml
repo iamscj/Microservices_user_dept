@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hystrix-app
+  labels:
+    app: hystrix-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hystrix-app
+  template:
+    metadata:
+      labels:
+        app: hystrix-app
+    spec:
+      containers:
+        - name: hystrix-app
+          image: yesswaroop/hystrix:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9295
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hystrix-service
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 9295
+      port: 80
+  selector:
+    app: hystrix-app

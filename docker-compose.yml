@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  service-registry:
+    image: iamscj/service-registry:0.0.1
+    ports:
+      - "8761:8761"
+
+  cloud-gateway:
+    image: iamscj/cloud-gateway:0.0.1
+    ports:
+      - "9191:9191"
+
+  department-service:
+    image: iamscj/department-service:0.0.1
+    ports:
+      - "9001:9001"
+
+  user-service:
+    image: iamscj/user-service:0.0.1
+    ports:
+      - "9002:9002"
